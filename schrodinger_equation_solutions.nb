@@ -1,0 +1,3427 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    117729,       3419]
+NotebookOptionsPosition[    106278,       3281]
+NotebookOutlinePosition[    106770,       3301]
+CellTagsIndexPosition[    106727,       3298]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+Using Mathematica to investigate solutions to the Schr\[ODoubleDot]dinger \
+equation.\
+\>", "Title",ExpressionUUID->"5f0eb207-83ff-49ea-b315-baefa20fcf71"],
+
+Cell[CellGroupData[{
+
+Cell["The Harmonic Oscillator", "Section",ExpressionUUID->"c11e3cb4-2063-4985-87f9-8ba8ab4ee94b"],
+
+Cell["\<\
+
+We start by defining a set of functions for the un-normalized wavefunctions \
+given in Table 3.1.\
+\>", "Text",ExpressionUUID->"c1f3d571-4a22-4cc3-8108-0bbf7dadd0b0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[CapitalPsi]0", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{"Exp", "[", 
+   RowBox[{
+    RowBox[{"-", 
+     SuperscriptBox["x", "2"]}], "/", "2"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalPsi]1", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{"2", "x", "*", 
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      SuperscriptBox["x", "2"]}], "/", "2"}], 
+    "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalPsi]2", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"4", 
+      SuperscriptBox["x", "2"]}], "-", "2"}], ")"}], 
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      SuperscriptBox["x", "2"]}], "/", "2"}], 
+    "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalPsi]3", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"8", 
+      SuperscriptBox["x", "3"]}], "-", 
+     RowBox[{"12", "x"}]}], ")"}], 
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      SuperscriptBox["x", "2"]}], "/", "2"}], 
+    "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalPsi]4", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"16", 
+      SuperscriptBox["x", "4"]}], "-", 
+     RowBox[{"48", 
+      SuperscriptBox["x", "2"]}], "+", "12"}], ")"}], 
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      SuperscriptBox["x", "2"]}], "/", "2"}], 
+    "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalPsi]5", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"32", 
+      SuperscriptBox["x", "5"]}], "-", 
+     RowBox[{"160", 
+      SuperscriptBox["x", "3"]}], "+", 
+     RowBox[{"120", "x"}]}], ")"}], 
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      SuperscriptBox["x", "2"]}], "/", "2"}], "]"}]}]}]}], "Input",ExpressionU\
+UID->"55902de8-22e8-4223-9225-4904288351d9"],
+
+Cell["\<\
+
+We then find the normalization factor for each of these wavefunctions by \
+computing the appropriate integral.\
+\>", "Text",ExpressionUUID->"c48ea9fc-dadd-49ac-ba68-bc8b0bb80f79"],
+
+Cell[BoxData[
+ RowBox[{" ", 
+  RowBox[{
+   SubscriptBox["A", "0"], "=", 
+   RowBox[{
+    SubsuperscriptBox["\[Integral]", 
+     RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[CapitalPsi]0", "[", "x", "]"}], ")"}], "2"], 
+     RowBox[{"\[DifferentialD]", "x"}]}]}]}]}]], "Input",ExpressionUUID->\
+"36c6d2aa-3f96-4ead-b879-21d893dfbb40"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["A", "1"], "=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPsi]1", "[", "x", "]"}], ")"}], "2"], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]}]], "Input",ExpressionUUID->\
+"c24e7a8b-268c-4542-b9d5-438f573140ee"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["A", "2"], "=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPsi]2", "[", "x", "]"}], ")"}], "2"], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]}]], "Input",ExpressionUUID->\
+"412878fc-09ae-4d8c-a27e-b65b8fc1d27e"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["A", "3"], "=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPsi]3", "[", "x", "]"}], ")"}], "2"], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]}]], "Input",ExpressionUUID->\
+"32bea87b-e70b-4c87-be94-6e6990ae77ae"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["A", "4"], "=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPsi]4", "[", "x", "]"}], ")"}], "2"], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]}]], "Input",ExpressionUUID->\
+"b3f2b218-fce5-4d9b-aa81-7be201516fce"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["A", "5"], "=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPsi]5", "[", "x", "]"}], ")"}], "2"], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]}]], "Input",ExpressionUUID->\
+"a0b06425-1489-4aa1-910d-7e43cf3590bb"],
+
+Cell["\<\
+
+And hence we define a set of functions for the normalized wavefunctions.\
+\>", "Text",ExpressionUUID->"7cbe227b-17ad-4350-a236-66cba3938163"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[CapitalPhi]0", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     SubscriptBox["A", "0"], ")"}], 
+    RowBox[{
+     RowBox[{"-", "1"}], "/", "2"}]], 
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      SuperscriptBox["x", "2"]}], "/", "2"}], 
+    "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalPhi]1", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     SubscriptBox["A", "1"], ")"}], 
+    RowBox[{
+     RowBox[{"-", "1"}], "/", "2"}]], "*", "2", "x", "*", 
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      SuperscriptBox["x", "2"]}], "/", "2"}], 
+    "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalPhi]2", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     SubscriptBox["A", "2"], ")"}], 
+    RowBox[{
+     RowBox[{"-", "1"}], "/", "2"}]], 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"4", 
+      SuperscriptBox["x", "2"]}], "-", "2"}], ")"}], 
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      SuperscriptBox["x", "2"]}], "/", "2"}], 
+    "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalPhi]3", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     SubscriptBox["A", "3"], ")"}], 
+    RowBox[{
+     RowBox[{"-", "1"}], "/", "2"}]], 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"8", 
+      SuperscriptBox["x", "3"]}], "-", 
+     RowBox[{"12", "x"}]}], ")"}], 
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      SuperscriptBox["x", "2"]}], "/", "2"}], 
+    "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalPhi]4", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     SubscriptBox["A", "4"], ")"}], 
+    RowBox[{
+     RowBox[{"-", "1"}], "/", "2"}]], 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"16", 
+      SuperscriptBox["x", "4"]}], "-", 
+     RowBox[{"48", 
+      SuperscriptBox["x", "2"]}], "+", "12"}], ")"}], 
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      SuperscriptBox["x", "2"]}], "/", "2"}], 
+    "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalPhi]5", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     SubscriptBox["A", "5"], ")"}], 
+    RowBox[{
+     RowBox[{"-", "1"}], "/", "2"}]], 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"32", 
+      SuperscriptBox["x", "5"]}], "-", 
+     RowBox[{"160", 
+      SuperscriptBox["x", "3"]}], "+", 
+     RowBox[{"120", "x"}]}], ")"}], 
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      SuperscriptBox["x", "2"]}], "/", "2"}], "]"}]}]}]}], "Input",ExpressionU\
+UID->"6c278ba4-4eca-4691-81ba-e64779468900"],
+
+Cell["\<\
+
+We then make a plot of each wavefunction and the square of this wavefunction \
+on the same graph, ensureing each graph has the same scale.\
+\>", "Text",ExpressionUUID->"1db481b9-c082-4fdd-89cd-6918e98c7195"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[CapitalPhi]0", "[", "x", "]"}], ",", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[CapitalPhi]0", "[", "x", "]"}], ")"}], "2"]}], "}"}], ",", 
+   " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "2", "]"}]}], "}"}]}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\!\(\*SubscriptBox[\(\[Phi]\), \(0\)]\)(x)\>\"", ",", " ", 
+      "\"\<\!\(\*SubsuperscriptBox[\(\[Phi]\), \(0\), \(2\)]\)(x)\>\""}], 
+     "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Normalized plot of the \[Nu]=0 wavefunction and its square.\>\"", 
+      "]"}], "]"}]}]}], "]"}]], "Input",ExpressionUUID->"20eff55a-c7ff-4a41-\
+b9ea-56e33f38e1fb"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[CapitalPhi]1", "[", "x", "]"}], ",", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[CapitalPhi]1", "[", "x", "]"}], ")"}], "2"]}], "}"}], ",", 
+   " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "2", "]"}]}], "}"}]}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\!\(\*SubscriptBox[\(\[Phi]\), \(1\)]\)(x)\>\"", ",", " ", 
+      "\"\<\!\(\*SubsuperscriptBox[\(\[Phi]\), \(1\), \(2\)]\)(x)\>\""}], 
+     "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Normalized plot of the \[Nu]=1 wavefunction and its square.\>\"", 
+      "]"}], "]"}]}]}], "]"}]], "Input",ExpressionUUID->"ec474555-3ca4-4239-\
+a817-20ab8da942be"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[CapitalPhi]2", "[", "x", "]"}], ",", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[CapitalPhi]2", "[", "x", "]"}], ")"}], "2"]}], "}"}], ",", 
+   " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "2", "]"}]}], "}"}]}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\!\(\*SubscriptBox[\(\[Phi]\), \(2\)]\)(x)\>\"", ",", " ", 
+      "\"\<\!\(\*SubsuperscriptBox[\(\[Phi]\), \(2\), \(2\)]\)(x)\>\""}], 
+     "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Normalized plot of the \[Nu]=2 wavefunction and its square.\>\"", 
+      "]"}], "]"}]}]}], "]"}]], "Input",ExpressionUUID->"f8e5997d-f401-414a-\
+ac0e-63a0f9bd8f13"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[CapitalPhi]3", "[", "x", "]"}], ",", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[CapitalPhi]3", "[", "x", "]"}], ")"}], "2"]}], "}"}], ",", 
+   " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "2", "]"}]}], "}"}]}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\!\(\*SubscriptBox[\(\[Phi]\), \(3\)]\)(x)\>\"", ",", " ", 
+      "\"\<\!\(\*SubsuperscriptBox[\(\[Phi]\), \(3\), \(2\)]\)(x)\>\""}], 
+     "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Normalized plot of the \[Nu]=3 wavefunction and its square.\>\"", 
+      "]"}], "]"}]}]}], "]"}]], "Input",ExpressionUUID->"398f8408-a9d6-4b9e-\
+b75f-a605c4e031ff"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[CapitalPhi]4", "[", "x", "]"}], ",", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[CapitalPhi]4", "[", "x", "]"}], ")"}], "2"]}], "}"}], ",", 
+   " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "2", "]"}]}], "}"}]}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\!\(\*SubscriptBox[\(\[Phi]\), \(4\)]\)(x)\>\"", ",", " ", 
+      "\"\<\!\(\*SubsuperscriptBox[\(\[Phi]\), \(4\), \(2\)]\)(x)\>\""}], 
+     "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Normalized plot of the \[Nu]=4 wavefunction and its square.\>\"", 
+      "]"}], "]"}]}]}], "]"}]], "Input",ExpressionUUID->"7c70443a-7010-4684-\
+a361-d0167f4e4f8f"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[CapitalPhi]5", "[", "x", "]"}], ",", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[CapitalPhi]5", "[", "x", "]"}], ")"}], "2"]}], "}"}], ",", 
+   " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "2", "]"}]}], "}"}]}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\!\(\*SubscriptBox[\(\[Phi]\), \(5\)]\)(x)\>\"", ",", " ", 
+      "\"\<\!\(\*SubsuperscriptBox[\(\[Phi]\), \(5\), \(2\)]\)(x)\>\""}], 
+     "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Normalized plot of the \[Nu]=5 wavefunction and its square.\>\"", 
+      "]"}], "]"}]}]}], "]"}]], "Input",ExpressionUUID->"d07c823c-7142-4121-\
+8c87-82e29be8288e"],
+
+Cell[TextData[{
+ "\nWe now set about computing the expectation values of ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", "2"], TraditionalForm]],ExpressionUUID->
+  "e46ded97-5293-403d-b43f-61f17939491b"],
+ " for each wavefunction using the appropriate integral."
+}], "Text",ExpressionUUID->"34c8cab5-18fc-425d-bb94-a555e563ee26"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["\[CapitalOmega]", "0"], "=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPhi]0", "[", "x", "]"}], ")"}], "2"], 
+    SuperscriptBox["x", "2"], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]}]], "Input",ExpressionUUID->\
+"c12d1467-df61-4a27-ab0f-7a81a41ce4f0"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["\[CapitalOmega]", "1"], "=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPhi]1", "[", "x", "]"}], ")"}], "2"], 
+    SuperscriptBox["x", "2"], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]}]], "Input",ExpressionUUID->\
+"8d836246-bf35-43fd-8688-f391a659f6b1"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["\[CapitalOmega]", "2"], "=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPhi]2", "[", "x", "]"}], ")"}], "2"], 
+    SuperscriptBox["x", "2"], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]}]], "Input",ExpressionUUID->\
+"ee592f53-fe86-4f2f-b987-0d41b82304cd"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["\[CapitalOmega]", "3"], "=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPhi]3", "[", "x", "]"}], ")"}], "2"], 
+    SuperscriptBox["x", "2"], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]}]], "Input",ExpressionUUID->\
+"ba2f2b95-3a8f-425b-af95-c7df5663057b"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["\[CapitalOmega]", "4"], "=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPhi]4", "[", "x", "]"}], ")"}], "2"], 
+    SuperscriptBox["x", "2"], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]}]], "Input",ExpressionUUID->\
+"575bcf4a-2639-4cc9-9b06-a4cfd76a963c"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["\[CapitalOmega]", "5"], "=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Infinity]"}], "\[Infinity]"], 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPhi]5", "[", "x", "]"}], ")"}], "2"], 
+    SuperscriptBox["x", "2"], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]}]], "Input",ExpressionUUID->\
+"024e03ef-bb4a-4ef7-989f-9041b332e6d0"],
+
+Cell["\<\
+
+And plot these value on a graph.\
+\>", "Text",ExpressionUUID->"84e362cf-ea2e-439e-8af2-505897b050d0"],
+
+Cell[BoxData[
+ RowBox[{"expected", " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      SubscriptBox["\[CapitalOmega]", "0"]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", 
+      SubscriptBox["\[CapitalOmega]", "1"]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", 
+      SubscriptBox["\[CapitalOmega]", "2"]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"3", ",", 
+      SubscriptBox["\[CapitalOmega]", "3"]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"4", ",", 
+      SubscriptBox["\[CapitalOmega]", "4"]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"5", ",", 
+      SubscriptBox["\[CapitalOmega]", "5"]}], "}"}]}], "}"}]}]], "Input",Expre\
+ssionUUID->"3821d848-4460-4361-8daa-fb97c57b6968"],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"expected", ",", " ", 
+   RowBox[{"PlotMarkers", "\[Rule]", 
+    RowBox[{"{", "\"\<x\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", "Black"}], ",", " ", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\[Nu]\>\"", ",", " ", 
+      "\"\<<\!\(\*SuperscriptBox[\(x\), \(2\)]\)>\>\""}], "}"}]}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.1"}], ",", " ", "5.1"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", " ", "6"}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Plot of the expectation value of \!\(\*SuperscriptBox[\(x\), \
+\(2\)]\) against \[Nu]\>\"", "]"}], "]"}]}]}], "]"}]], "Input",ExpressionUUID-\
+>"0ca93a0e-e384-47c5-a0aa-7f845ec2c2df"],
+
+Cell["\<\
+
+Finally we compute the position of the classical turning point.\
+\>", "Text",ExpressionUUID->"8dabd7a3-db1a-4157-8fc0-21b94846175c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SubscriptBox["x", "class"], "[", "\[Nu]_", "]"}], " ", ":=", " ", 
+  SqrtBox[
+   RowBox[{"2", 
+    RowBox[{"(", 
+     RowBox[{"\[Nu]", "+", 
+      FractionBox["1", "2"]}], ")"}]}]]}]], "Input",ExpressionUUID->"e25fe200-\
+4fd4-481e-8162-f8bb843f27ec"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["x", "class"], "[", "0", "]"}]], "Input",ExpressionUUID->\
+"3197dc02-34ea-45ba-9ab9-e543948832e6"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["x", "class"], "[", "1", "]"}]], "Input",ExpressionUUID->\
+"36158588-2fe2-4d91-88c1-4173280e08d5"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["x", "class"], "[", "2", "]"}]], "Input",ExpressionUUID->\
+"725d3f95-5572-4f28-86d6-ece89dcb3cd0"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["x", "class"], "[", "3", "]"}]], "Input",ExpressionUUID->\
+"de3ce7bf-3e52-46ea-ba47-f975e259dda4"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["x", "class"], "[", "4", "]"}]], "Input",ExpressionUUID->\
+"749d22d3-239d-46c6-a328-26668e47044d"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["x", "class"], "[", "5", "]"}]], "Input",ExpressionUUID->\
+"bf2d772b-0ecf-460c-be47-d52684f98e2a"],
+
+Cell["\<\
+
+And determine the probability that the oscillator will be found in the \
+non-classical region.\
+\>", "Text",ExpressionUUID->"3b0ce383-16cf-46aa-b577-5c196da35014"],
+
+Cell[BoxData[
+ RowBox[{"2", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPhi]0", "[", "x", "]"}], ")"}], "2"], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", 
+      RowBox[{
+       SubscriptBox["x", "class"], "[", "0", "]"}], ",", "\[Infinity]"}], 
+     "}"}]}], "]"}]}]], "Input",ExpressionUUID->"9ba0c9c6-33d8-4d61-bdc8-\
+71aa297e8368"],
+
+Cell[BoxData[
+ RowBox[{"2", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPhi]1", "[", "x", "]"}], ")"}], "2"], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", 
+      RowBox[{
+       SubscriptBox["x", "class"], "[", "1", "]"}], ",", "\[Infinity]"}], 
+     "}"}]}], "]"}]}]], "Input",ExpressionUUID->"e3d70ee0-aa55-4558-b5b1-\
+ba6d8c9a0075"],
+
+Cell[BoxData[
+ RowBox[{"2", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPhi]2", "[", "x", "]"}], ")"}], "2"], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", 
+      RowBox[{
+       SubscriptBox["x", "class"], "[", "2", "]"}], ",", "\[Infinity]"}], 
+     "}"}]}], "]"}]}]], "Input",ExpressionUUID->"d18a9cd2-1a00-44b1-8f9e-\
+0276cbe2f874"],
+
+Cell[BoxData[
+ RowBox[{"2", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPhi]3", "[", "x", "]"}], ")"}], "2"], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", 
+      RowBox[{
+       SubscriptBox["x", "class"], "[", "3", "]"}], ",", "\[Infinity]"}], 
+     "}"}]}], "]"}]}]], "Input",ExpressionUUID->"eb4cbbdd-e13c-4cbb-937d-\
+3c41c3c8e71a"],
+
+Cell[BoxData[
+ RowBox[{"2", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPhi]4", "[", "x", "]"}], ")"}], "2"], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", 
+      RowBox[{
+       SubscriptBox["x", "class"], "[", "4", "]"}], ",", "\[Infinity]"}], 
+     "}"}]}], "]"}]}]], "Input",ExpressionUUID->"9c66fee7-c485-4844-9abe-\
+1860e644b17f"],
+
+Cell[BoxData[
+ RowBox[{"2", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[CapitalPhi]5", "[", "x", "]"}], ")"}], "2"], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", 
+      RowBox[{
+       SubscriptBox["x", "class"], "[", "5", "]"}], ",", "\[Infinity]"}], 
+     "}"}]}], "]"}]}]], "Input",ExpressionUUID->"88295165-f0ee-492d-8a10-\
+e3800fe5f956"],
+
+Cell["\<\
+
+And plot these values.\
+\>", "Text",ExpressionUUID->"013af861-c29d-49ba-afc4-75fe833aaaa5"],
+
+Cell[BoxData[
+ RowBox[{"probabilities", " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      RowBox[{"2", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[CapitalPhi]0", "[", "x", "]"}], ")"}], "2"], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{
+            SubscriptBox["x", "class"], "[", "0", "]"}], ",", "\[Infinity]"}],
+           "}"}]}], "]"}]}]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", 
+      RowBox[{"2", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[CapitalPhi]1", "[", "x", "]"}], ")"}], "2"], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{
+            SubscriptBox["x", "class"], "[", "1", "]"}], ",", "\[Infinity]"}],
+           "}"}]}], "]"}]}]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", 
+      RowBox[{"2", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[CapitalPhi]2", "[", "x", "]"}], ")"}], "2"], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{
+            SubscriptBox["x", "class"], "[", "2", "]"}], ",", "\[Infinity]"}],
+           "}"}]}], "]"}]}]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"3", ",", 
+      RowBox[{"2", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[CapitalPhi]3", "[", "x", "]"}], ")"}], "2"], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{
+            SubscriptBox["x", "class"], "[", "3", "]"}], ",", "\[Infinity]"}],
+           "}"}]}], "]"}]}]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"4", ",", 
+      RowBox[{"2", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[CapitalPhi]4", "[", "x", "]"}], ")"}], "2"], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{
+            SubscriptBox["x", "class"], "[", "4", "]"}], ",", "\[Infinity]"}],
+           "}"}]}], "]"}]}]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"5", ",", 
+      RowBox[{"2", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[CapitalPhi]5", "[", "x", "]"}], ")"}], "2"], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{
+            SubscriptBox["x", "class"], "[", "5", "]"}], ",", "\[Infinity]"}],
+           "}"}]}], "]"}]}]}], "}"}]}], "}"}]}]], "Input",ExpressionUUID->\
+"98c4033f-f756-4089-a9ce-b91fc3be2641"],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"probabilities", ",", " ", 
+   RowBox[{"PlotMarkers", "\[Rule]", 
+    RowBox[{"{", "\"\<x\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", "Black"}], ",", " ", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<\[Nu]\>\"", ",", " ", "\"\<p\>\""}], "}"}]}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.3"}], ",", " ", "5.5"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0.06", ",", " ", "0.16"}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Plot of the probability that the oscillator will be found in the \
+non-classical region against \[Nu]\>\"", "]"}], "]"}]}]}], "]"}]], "Input",Exp\
+ressionUUID->"958c3ae1-0219-4e5a-b874-fbfa292d207d"],
+
+Cell[TextData[{
+ "\nDiscounting the parts of the wavefuntion that tend towards zero at \
+\[PlusMinus]\[Infinity], each wavefunction has a number of nodes that is \
+equal to \[Nu].\n\nAs \[Nu] increases the quare of the wavefunction becomes \
+higher at the exteremeties and lower towards the central equilibrium. This \
+means that, relatively, there is more chance that the electron will be found \
+further from this position. In the classical case this would not be the case.\
+\n\n<x> is zero since we expect the particle to reside in the central \
+equilibrium position since the potential is symmetric. As \[Nu] increases we \
+expect <",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", "2"], TraditionalForm]],ExpressionUUID->
+  "8b2ad584-7bee-43fa-9d45-7eb6a7e4e5cb"],
+ "> to tend towards some finite value.\n\nThe degree of penetration into thge \
+non-classical regions increases as \[Nu] increases."
+}], "Text",ExpressionUUID->"01950934-5b1d-47e7-a3ed-3d52e65b0827"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["The Morse Potential", "Section",ExpressionUUID->"2fa171a6-e3f6-407e-9495-c1cbd6283eb0"],
+
+Cell["\<\
+
+We start by initially defining a function for the Morse potential and then \
+plotting this and an equivalent harmonic potential on the same graph.\
+\>", "Text",ExpressionUUID->"9a290dbd-0c77-45a2-9f33-dc708b93612d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SubscriptBox["V", "M"], "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{"12", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"1", "-", 
+      RowBox[{"Exp", "[", 
+       RowBox[{
+        RowBox[{"-", "0.2"}], "*", "x"}], "]"}]}], ")"}], "2"]}]}]], "Input",E\
+xpressionUUID->"eee712ad-07fc-4c22-a49b-e48f7884b494"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"V", "[", "x_", "]"}], " ", ":=", " ", 
+  RowBox[{"12", "*", 
+   SuperscriptBox["0.2", "2"], "*", 
+   SuperscriptBox["x", "2"]}]}]], "Input",ExpressionUUID->"da4c3e03-e322-40f4-\
+a486-dfff74a6dc09"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["V", "M"], "[", "x", "]"}], ",", " ", 
+     RowBox[{"V", "[", "x", "]"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "5"}], ",", "15"}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "15"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.1"}], ",", "15"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "2", "]"}]}], "}"}]}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\!\(\*SubscriptBox[\(V\), \(M\)]\)(x)\>\"", ",", " ", 
+      "\"\<V(x)\>\""}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Plot of the Morse potential and harmonic potential with force \
+constant \!\(\*SubscriptBox[\(k\), \(M\)]\).\>\"", "]"}], "]"}]}]}], 
+  "]"}]], "Input",ExpressionUUID->"865feeb3-bcc5-4731-b11f-191d180e8e5b"],
+
+Cell["\<\
+
+If we take a closer look around the origin, using a scaled set of axes, we \
+can see that for small values of x, say between -0.2 and 0.2, that the More \
+potential can be resonably approximated by the harmonic potential.\
+\>", "Text",ExpressionUUID->"4eaf8edd-b0cd-438a-bd05-b01fd14e35d5"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["V", "M"], "[", "x", "]"}], ",", " ", 
+     RowBox[{"V", "[", "x", "]"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "5"}], ",", "15"}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.5"}], ",", "0.5"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.1"}], ",", "0.2"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "2", "]"}]}], "}"}]}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\!\(\*SubscriptBox[\(V\), \(M\)]\)(x)\>\"", ",", " ", 
+      "\"\<V(x)\>\""}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Plot of the Morse potential and harmonic potential with force \
+constant \!\(\*SubscriptBox[\(k\), \(M\)]\).\>\"", "]"}], "]"}]}]}], 
+  "]"}]], "Input",ExpressionUUID->"80de4dbe-5ed8-42cc-aa03-96da79b20666"],
+
+Cell[TextData[{
+ "\nTo see how the Morse potential varies we then plot it with constant \
+values of ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["D", "e"], TraditionalForm]],ExpressionUUID->
+  "64fb54a7-037e-402a-8605-4e41e5149c43"],
+ " and varying values of \[Beta]."
+}], "Text",ExpressionUUID->"c67729de-b171-4980-a42f-17364c3344e8"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"12", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "0.3"}], "*", "x"}], "]"}]}], ")"}], "2"]}], ",", " ", 
+     RowBox[{"12", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "0.5"}], "*", "x"}], "]"}]}], ")"}], "2"]}], ",", " ", 
+     RowBox[{"12", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "1"}], "*", "x"}], "]"}]}], ")"}], "2"]}]}], "}"}], 
+   ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "5"}], ",", "15"}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "15"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.1"}], ",", "15"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "2", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "3", "]"}]}], "}"}]}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\[Beta]=0.3\>\"", ",", " ", "\"\<\[Beta]=0.5\>\"", ",", " ", 
+      "\"\<\[Beta]=1\>\""}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Plot of the Morse potential with different values of \[Beta].\>\"",
+       "]"}], "]"}]}]}], "]"}]], "Input",ExpressionUUID->"2ad957ba-1d51-4fc0-\
+aa13-98ba80e4faa6"],
+
+Cell[TextData[{
+ "\nAnd then with constant values of \[Beta] and varying values of ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["D", "e"], TraditionalForm]],ExpressionUUID->
+  "137d7f02-08fc-4915-a09c-90306ce783e2"],
+ "."
+}], "Text",ExpressionUUID->"ea1ba81c-4b87-4dd3-97d1-80e4a9dc2cd1"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"5", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "0.2"}], "*", "x"}], "]"}]}], ")"}], "2"]}], ",", " ", 
+     RowBox[{"10", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "0.2"}], "*", "x"}], "]"}]}], ")"}], "2"]}], ",", " ", 
+     RowBox[{"15", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "0.2"}], "*", "x"}], "]"}]}], ")"}], "2"]}]}], "}"}], 
+   ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "5"}], ",", "25"}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "25"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.1"}], ",", "15"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "2", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "3", "]"}]}], "}"}]}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\!\(\*SubscriptBox[\(D\), \(e\)]\)=5\>\"", ",", " ", 
+      "\"\<\!\(\*SubscriptBox[\(D\), \(e\)]\)=10\>\"", ",", " ", 
+      "\"\<\!\(\*SubscriptBox[\(D\), \(e\)]\)=15\>\""}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Plot of the Morse potential with different values of \
+\!\(\*SubscriptBox[\(D\), \(e\)]\).\>\"", "]"}], "]"}]}]}], "]"}]], "Input",Ex\
+pressionUUID->"1a349f76-b885-446e-83ef-ef9d3aded675"],
+
+Cell[TextData[{
+ "\nNext we are interested in calculating the wavefunctions for particles in \
+a Morse potential. To achieve this we first need to define some physical \
+constants and functions in ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " with which we can compute the values of \[Beta] and p."
+}], "Text",ExpressionUUID->"5c44f59b-0c7b-4ea3-92c2-fd015a7d0738"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"amu", "=", 
+   RowBox[{"1.66053886", " ", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "27"}]]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"h", "=", 
+   RowBox[{"6.6260693", " ", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "34"}]]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"c", "=", 
+   RowBox[{"2.99792458", " ", 
+    SuperscriptBox["10", "10"]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mO", "=", "15.995"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mC", "=", "12.000"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[Omega]", "e"], "=", "2170"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   SubscriptBox["x", "e"], "=", 
+   RowBox[{"13.29", "/", "2170"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   SubscriptBox["r", "e"], "=", 
+   RowBox[{"112.8", "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "12"}]]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Mu]", "=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"mO", "*", "mC"}], 
+     RowBox[{"mO", "+", "mC"}]], "*", "amu"}]}], ";"}]}], "Input",ExpressionUU\
+ID->"b0d563a3-e949-4f31-bb79-22c93cdb63f7"],
+
+Cell[BoxData[
+ RowBox[{"\[Beta]", "=", 
+  SqrtBox[
+   FractionBox[
+    RowBox[{"8", 
+     SuperscriptBox["\[Pi]", "2"], "c", "*", "\[Mu]", "*", 
+     SubscriptBox["\[Omega]", "e"], "*", 
+     SubscriptBox["x", "e"]}], "h"]]}]], "Input",ExpressionUUID->"177e3ae1-\
+e5c6-463a-9ddc-2a8a9d09b955"],
+
+Cell[BoxData[
+ RowBox[{"p", "=", 
+  FractionBox[
+   SubscriptBox["\[Omega]", "e"], 
+   RowBox[{
+    SubscriptBox["\[Omega]", "e"], 
+    SubscriptBox["x", "e"]}]]}]], "Input",ExpressionUUID->"0cb9a037-0fd5-46e8-\
+8a0a-e8851a104d8e"],
+
+Cell["\<\
+
+We can now use these to plot the Morse wavefunctions (with the same scales so \
+that they can be compared).\
+\>", "Text",ExpressionUUID->"c96fe037-9003-4691-bf2d-aaf97f52782c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[Psi]", "[", 
+   RowBox[{"v_", ",", "re_", ",", "p_", ",", "\[Beta]_", ",", "r_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Exp", "[", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"-", "p"}], " ", 
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", "\[Beta]"}], 
+          RowBox[{"(", 
+           RowBox[{"r", "-", "re"}], ")"}]}], "]"}]}], "2"], "]"}], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"p", " ", 
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", "\[Beta]"}], 
+          RowBox[{"(", 
+           RowBox[{"r", "-", "re"}], ")"}]}], "]"}]}], ")"}], 
+      FractionBox[
+       RowBox[{"(", 
+        RowBox[{"p", "-", 
+         RowBox[{"2", "v"}], "-", "1"}], ")"}], "2"]], 
+     RowBox[{"LaguerreL", "[", 
+      RowBox[{"v", ",", 
+       RowBox[{"(", 
+        RowBox[{"p", "-", 
+         RowBox[{"2", "v"}], "-", "1"}], ")"}], ",", 
+       RowBox[{"p", " ", 
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", "\[Beta]"}], 
+          RowBox[{"(", 
+           RowBox[{"r", "-", "re"}], ")"}]}], " ", "]"}]}]}], "]"}]}], ")"}], 
+   "/", 
+   RowBox[{"Sqrt", "[", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       UnderoverscriptBox["\[Product]", 
+        RowBox[{"j", "=", "1"}], "v"], 
+       RowBox[{"(", 
+        RowBox[{"p", "-", 
+         RowBox[{"2", "v"}], "-", "1", "+", "j"}], ")"}]}], ")"}], 
+     FractionBox[
+      RowBox[{"Gamma", "[", 
+       RowBox[{"p", "-", 
+        RowBox[{"2", "v"}], "-", "1"}], "]"}], 
+      RowBox[{
+       RowBox[{"v", "!"}], " ", "\[Beta]"}]]}], "]"}]}]}]], "Input",Expression\
+UUID->"35445aaf-151e-473d-8eea-faea2cd2fa92"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\[Psi]", "[", 
+     RowBox[{"0", ",", " ", 
+      SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+      "x"}], "]"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"0.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"1.6", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}]}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.8", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", 
+        RowBox[{"1.6", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "360000"}], ",", "360000"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\[Nu]=0\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{"Framed", "[", "\"\<Plot of a Morse wavefunction.\>\"", "]"}], 
+     "]"}]}], ",", 
+   RowBox[{"AxesOrigin", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0.8", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]]}], ",", "0"}], "}"}]}]}], "]"}]], "Input",Express\
+ionUUID->"3993f3c4-072b-4a90-b727-095b8738e404"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\[Psi]", "[", 
+     RowBox[{"1", ",", " ", 
+      SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+      "x"}], "]"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"0.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"1.6", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}]}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.8", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", 
+        RowBox[{"1.6", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "360000"}], ",", "360000"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\[Nu]=1\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{"Framed", "[", "\"\<Plot of a Morse wavefunction.\>\"", "]"}], 
+     "]"}]}], ",", 
+   RowBox[{"AxesOrigin", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0.8", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]]}], ",", "0"}], "}"}]}]}], "]"}]], "Input",Express\
+ionUUID->"3f6e1e0b-baa9-4f0d-b028-3ffeda397877"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\[Psi]", "[", 
+     RowBox[{"2", ",", " ", 
+      SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+      "x"}], "]"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"0.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"1.6", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}]}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.8", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", 
+        RowBox[{"1.6", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "360000"}], ",", "360000"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\[Nu]=2\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{"Framed", "[", "\"\<Plot of a Morse wavefunction.\>\"", "]"}], 
+     "]"}]}], ",", 
+   RowBox[{"AxesOrigin", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0.8", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]]}], ",", "0"}], "}"}]}]}], "]"}]], "Input",Express\
+ionUUID->"15be8593-8c60-46b3-b7ca-3467ecf3ed93"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\[Psi]", "[", 
+     RowBox[{"3", ",", " ", 
+      SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+      "x"}], "]"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"0.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"1.6", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}]}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.8", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", 
+        RowBox[{"1.6", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "360000"}], ",", "360000"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\[Nu]=3\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{"Framed", "[", "\"\<Plot of a Morse wavefunction.\>\"", "]"}], 
+     "]"}]}], ",", 
+   RowBox[{"AxesOrigin", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0.8", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]]}], ",", "0"}], "}"}]}]}], "]"}]], "Input",Express\
+ionUUID->"8840c6ea-7dc9-4e82-aebc-484ac7217a9b"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\[Psi]", "[", 
+     RowBox[{"6", ",", " ", 
+      SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+      "x"}], "]"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"0.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"1.6", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}]}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.8", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", 
+        RowBox[{"1.6", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "360000"}], ",", "360000"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\[Nu]=6\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{"Framed", "[", "\"\<Plot of a Morse wavefunction.\>\"", "]"}], 
+     "]"}]}], ",", 
+   RowBox[{"AxesOrigin", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0.8", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]]}], ",", "0"}], "}"}]}]}], "]"}]], "Input",Express\
+ionUUID->"3008af96-4b7e-4895-9a64-73ea712ad471"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\[Psi]", "[", 
+     RowBox[{"9", ",", " ", 
+      SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+      "x"}], "]"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"0.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"1.6", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}]}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.8", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", 
+        RowBox[{"1.6", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "360000"}], ",", "360000"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\[Nu]=9\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{"Framed", "[", "\"\<Plot of a Morse wavefunction.\>\"", "]"}], 
+     "]"}]}], ",", 
+   RowBox[{"AxesOrigin", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0.8", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]]}], ",", "0"}], "}"}]}]}], "]"}]], "Input",Express\
+ionUUID->"38d436a1-122d-42c1-b2f4-ab6b3f186b37"],
+
+Cell["\<\
+
+As before, we now plot the squares of the wavefunctions.\
+\>", "Text",ExpressionUUID->"0b46eb8f-d96e-4861-9d88-06f722dd3406"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"0", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "x"}], "]"}], ")"}], "2"], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"0.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"1.6", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}]}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.8", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", 
+        RowBox[{"1.6", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        SuperscriptBox["360000", "2"]}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\[Nu]=0\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", "\"\<Plot of the square of a Morse wavefunction.\>\"", 
+      "]"}], "]"}]}], ",", 
+   RowBox[{"AxesOrigin", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0.8", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]]}], ",", "0"}], "}"}]}]}], "]"}]], "Input",Express\
+ionUUID->"9937ccb4-6ee9-4ed9-b9f8-d88973b5a3e1"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"1", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "x"}], "]"}], ")"}], "2"], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"0.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"1.6", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}]}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.8", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", 
+        RowBox[{"1.6", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        SuperscriptBox["360000", "2"]}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\[Nu]=1\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", "\"\<Plot of the square of a Morse wavefunction.\>\"", 
+      "]"}], "]"}]}], ",", 
+   RowBox[{"AxesOrigin", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0.8", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]]}], ",", "0"}], "}"}]}]}], "]"}]], "Input",Express\
+ionUUID->"a9d18181-6877-4072-a2f8-3af5433999d6"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"2", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "x"}], "]"}], ")"}], "2"], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"0.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"1.6", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}]}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.8", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", 
+        RowBox[{"1.6", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        SuperscriptBox["360000", "2"]}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\[Nu]=2\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", "\"\<Plot of the square of a Morse wavefunction.\>\"", 
+      "]"}], "]"}]}], ",", 
+   RowBox[{"AxesOrigin", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0.8", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]]}], ",", "0"}], "}"}]}]}], "]"}]], "Input",Express\
+ionUUID->"d656673c-eee8-4b64-9111-20d59958a9d2"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"3", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "x"}], "]"}], ")"}], "2"], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"0.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"1.6", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}]}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.8", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", 
+        RowBox[{"1.6", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        SuperscriptBox["360000", "2"]}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\[Nu]=3\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", "\"\<Plot of the square of a Morse wavefunction.\>\"", 
+      "]"}], "]"}]}], ",", 
+   RowBox[{"AxesOrigin", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0.8", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]]}], ",", "0"}], "}"}]}]}], "]"}]], "Input",Express\
+ionUUID->"26cf1f32-d757-4a41-8eda-90356039af12"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"6", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "x"}], "]"}], ")"}], "2"], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"0.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"1.6", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}]}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.8", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", 
+        RowBox[{"1.6", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        SuperscriptBox["360000", "2"]}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\[Nu]=6\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", "\"\<Plot of the square of a Morse wavefunction.\>\"", 
+      "]"}], "]"}]}], ",", 
+   RowBox[{"AxesOrigin", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0.8", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]]}], ",", "0"}], "}"}]}]}], "]"}]], "Input",Express\
+ionUUID->"0e5f017c-03b9-46c6-813a-6689c5987c90"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"9", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "x"}], "]"}], ")"}], "2"], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"0.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"1.6", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}]}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.8", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", 
+        RowBox[{"1.6", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        SuperscriptBox["360000", "2"]}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\[Nu]=9\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", "\"\<Plot of the square of a Morse wavefunction.\>\"", 
+      "]"}], "]"}]}], ",", 
+   RowBox[{"AxesOrigin", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0.8", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "10"}]]}], ",", "0"}], "}"}]}]}], "]"}]], "Input",Express\
+ionUUID->"a292f52c-487c-495c-a626-113190ab234d"],
+
+Cell["\<\
+
+Using these wavefunctions we can now compute the expectation values of r for \
+each value of \[Nu].\
+\>", "Text",ExpressionUUID->"40d472c0-5152-4e34-83fc-a7f8b2bbebc2"],
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"0", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "r"}], "]"}], ")"}], "2"], "*", "r"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"50", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"170", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"d7ee5ed2-6ccf-4543-873c-3fe03b688a39"],
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"1", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "r"}], "]"}], ")"}], "2"], "*", "r"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"50", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"170", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"3da81b11-1e55-4ab9-a956-4329ff88c58c"],
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"2", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "r"}], "]"}], ")"}], "2"], "*", "r"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"50", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"170", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"1f13d19c-463c-4c74-be23-a5e9780996fd"],
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"3", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "r"}], "]"}], ")"}], "2"], "*", "r"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"50", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"170", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"bbdca13e-0ad6-4706-b35d-410389382df9"],
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"6", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "r"}], "]"}], ")"}], "2"], "*", "r"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"50", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"170", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"d16ab150-c7bf-463e-89b2-ab64254485a3"],
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"9", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "r"}], "]"}], ")"}], "2"], "*", "r"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"50", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"170", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"bbf9b6b2-5590-48e5-95d2-532cc2a2903a"],
+
+Cell["\<\
+
+And plot a graph of these values versus \[Nu].\
+\>", "Text",ExpressionUUID->"c71ff785-6b05-4f6a-8a92-46088ed9f419"],
+
+Cell[BoxData[
+ RowBox[{"expectations", " ", ":=", " ", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[Psi]", "[", 
+            RowBox[{"0", ",", " ", 
+             SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", 
+             " ", "r"}], "]"}], ")"}], "2"], "*", "r"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", 
+          RowBox[{"50", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}], ",", 
+          RowBox[{"170", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", 
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[Psi]", "[", 
+            RowBox[{"1", ",", " ", 
+             SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", 
+             " ", "r"}], "]"}], ")"}], "2"], "*", "r"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", 
+          RowBox[{"50", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}], ",", 
+          RowBox[{"170", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", 
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[Psi]", "[", 
+            RowBox[{"2", ",", " ", 
+             SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", 
+             " ", "r"}], "]"}], ")"}], "2"], "*", "r"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", 
+          RowBox[{"50", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}], ",", 
+          RowBox[{"170", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"3", ",", 
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[Psi]", "[", 
+            RowBox[{"3", ",", " ", 
+             SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", 
+             " ", "r"}], "]"}], ")"}], "2"], "*", "r"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", 
+          RowBox[{"50", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}], ",", 
+          RowBox[{"170", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"6", ",", 
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[Psi]", "[", 
+            RowBox[{"6", ",", " ", 
+             SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", 
+             " ", "r"}], "]"}], ")"}], "2"], "*", "r"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", 
+          RowBox[{"50", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}], ",", 
+          RowBox[{"170", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"9", ",", 
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[Psi]", "[", 
+            RowBox[{"9", ",", " ", 
+             SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", 
+             " ", "r"}], "]"}], ")"}], "2"], "*", "r"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", 
+          RowBox[{"50", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}], ",", 
+          RowBox[{"170", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}], "}"}]}], 
+   "\[IndentingNewLine]", "}"}]}]], "Input",ExpressionUUID->"404910ed-d931-\
+4a0c-b065-a5070f35ad15"],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"expectations", ",", " ", 
+   RowBox[{"PlotMarkers", "\[Rule]", 
+    RowBox[{"{", "\"\<x\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", "Black"}], ",", " ", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\[Nu]\>\"", ",", " ", 
+      "\"\<<r\!\(\*SubscriptBox[\(>\), \(\[Nu]\)]\)\>\""}], "}"}]}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.3"}], ",", " ", "9.1"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"1.12", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}], ",", " ", 
+        RowBox[{"1.21", "*", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "10"}]]}]}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Plot of the expectation value of r against \[Nu]\>\"", "]"}], 
+     "]"}]}]}], "]"}]], "Input",ExpressionUUID->"c65d8e13-2830-4bc6-8b86-\
+154d876f0c72"],
+
+Cell["\<\
+In a similar way to before it is also possible to determine the expectation \
+value of one upon r squared with respect to \[Nu].\
+\>", "Text",ExpressionUUID->"002549e9-9663-449d-a137-a38a689c67f2"],
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"0", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "r"}], "]"}], ")"}], "2"], "*", 
+    SuperscriptBox["r", 
+     RowBox[{"-", "2"}]]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"50", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"170", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"9fbec3bb-34b7-4e17-b307-ba2f5f2a7f0e"],
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"1", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "r"}], "]"}], ")"}], "2"], "*", 
+    SuperscriptBox["r", 
+     RowBox[{"-", "2"}]]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"50", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"170", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"def1c85d-ac1a-48f7-a853-db44e1cd05bc"],
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"2", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "r"}], "]"}], ")"}], "2"], "*", 
+    SuperscriptBox["r", 
+     RowBox[{"-", "2"}]]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"50", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"170", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"1aaee18c-f0e4-4d34-8a65-6fed8555df67"],
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"3", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "r"}], "]"}], ")"}], "2"], "*", 
+    SuperscriptBox["r", 
+     RowBox[{"-", "2"}]]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"50", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"170", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"8f526127-ef16-428e-b237-2979229a35ff"],
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"6", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "r"}], "]"}], ")"}], "2"], "*", 
+    SuperscriptBox["r", 
+     RowBox[{"-", "2"}]]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"50", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"170", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"a7c5ca7e-efab-475e-90ea-9881c0bd3a93"],
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Psi]", "[", 
+       RowBox[{"9", ",", " ", 
+        SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ", 
+        "r"}], "]"}], ")"}], "2"], "*", 
+    SuperscriptBox["r", 
+     RowBox[{"-", "2"}]]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", 
+     RowBox[{"50", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"170", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"3be6b474-b38b-443e-9822-5c5d7212ddbe"],
+
+Cell[TextData[{
+ "\nThese values can be used to calculate values for ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    OverscriptBox["B", "~"], "\[Nu]"], TraditionalForm]],ExpressionUUID->
+  "7ed7f1bc-30a9-447e-8275-6d058b7a8a17"],
+ "."
+}], "Text",ExpressionUUID->"164a6332-52c6-4157-946a-82bc61a1bedc"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["h", 
+   RowBox[{"8", "*", 
+    SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[Psi]", "[", 
+        RowBox[{"0", ",", " ", 
+         SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ",
+          "r"}], "]"}], ")"}], "2"], "*", 
+     SuperscriptBox["r", 
+      RowBox[{"-", "2"}]]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", 
+      RowBox[{"50", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "12"}]]}], ",", 
+      RowBox[{"170", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]], "Input",ExpressionUUID->\
+"5cf783cd-bc00-480f-850a-d9727d5e370d"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["h", 
+   RowBox[{"8", "*", 
+    SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[Psi]", "[", 
+        RowBox[{"1", ",", " ", 
+         SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ",
+          "r"}], "]"}], ")"}], "2"], "*", 
+     SuperscriptBox["r", 
+      RowBox[{"-", "2"}]]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", 
+      RowBox[{"50", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "12"}]]}], ",", 
+      RowBox[{"170", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]], "Input",ExpressionUUID->\
+"598413ef-4435-4546-b8b8-2fffc48f6748"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["h", 
+   RowBox[{"8", "*", 
+    SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[Psi]", "[", 
+        RowBox[{"2", ",", " ", 
+         SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ",
+          "r"}], "]"}], ")"}], "2"], "*", 
+     SuperscriptBox["r", 
+      RowBox[{"-", "2"}]]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", 
+      RowBox[{"50", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "12"}]]}], ",", 
+      RowBox[{"170", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]], "Input",ExpressionUUID->\
+"20a7b42e-9892-4d14-bcb9-b0a38e47cb40"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["h", 
+   RowBox[{"8", "*", 
+    SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[Psi]", "[", 
+        RowBox[{"3", ",", " ", 
+         SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ",
+          "r"}], "]"}], ")"}], "2"], "*", 
+     SuperscriptBox["r", 
+      RowBox[{"-", "2"}]]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", 
+      RowBox[{"50", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "12"}]]}], ",", 
+      RowBox[{"170", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]], "Input",ExpressionUUID->\
+"4f70ad26-83ad-441f-85c3-4818adb05950"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["h", 
+   RowBox[{"8", "*", 
+    SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[Psi]", "[", 
+        RowBox[{"6", ",", " ", 
+         SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ",
+          "r"}], "]"}], ")"}], "2"], "*", 
+     SuperscriptBox["r", 
+      RowBox[{"-", "2"}]]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", 
+      RowBox[{"50", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "12"}]]}], ",", 
+      RowBox[{"170", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]], "Input",ExpressionUUID->\
+"ed0b3c3c-63a4-4f3e-b8fd-37b966f9530c"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["h", 
+   RowBox[{"8", "*", 
+    SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[Psi]", "[", 
+        RowBox[{"9", ",", " ", 
+         SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", " ",
+          "r"}], "]"}], ")"}], "2"], "*", 
+     SuperscriptBox["r", 
+      RowBox[{"-", "2"}]]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", 
+      RowBox[{"50", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "12"}]]}], ",", 
+      RowBox[{"170", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]], "Input",ExpressionUUID->\
+"7403876e-7496-4dfd-a2a5-6720bb4e9a3b"],
+
+Cell["\<\
+
+And now plotting both of these.\
+\>", "Text",ExpressionUUID->"b927ebe1-3034-48f8-81bf-ba4c687b9c4e"],
+
+Cell[BoxData[
+ RowBox[{"expectationsrsquared", " ", ":=", " ", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[Psi]", "[", 
+            RowBox[{"0", ",", " ", 
+             SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", 
+             " ", "r"}], "]"}], ")"}], "2"], "*", 
+         SuperscriptBox["r", 
+          RowBox[{"-", "2"}]]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", 
+          RowBox[{"50", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}], ",", 
+          RowBox[{"170", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", 
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[Psi]", "[", 
+            RowBox[{"1", ",", " ", 
+             SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", 
+             " ", "r"}], "]"}], ")"}], "2"], "*", 
+         SuperscriptBox["r", 
+          RowBox[{"-", "2"}]]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", 
+          RowBox[{"50", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}], ",", 
+          RowBox[{"170", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", 
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[Psi]", "[", 
+            RowBox[{"2", ",", " ", 
+             SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", 
+             " ", "r"}], "]"}], ")"}], "2"], "*", 
+         SuperscriptBox["r", 
+          RowBox[{"-", "2"}]]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", 
+          RowBox[{"50", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}], ",", 
+          RowBox[{"170", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"3", ",", 
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[Psi]", "[", 
+            RowBox[{"3", ",", " ", 
+             SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", 
+             " ", "r"}], "]"}], ")"}], "2"], "*", 
+         SuperscriptBox["r", 
+          RowBox[{"-", "2"}]]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", 
+          RowBox[{"50", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}], ",", 
+          RowBox[{"170", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"6", ",", 
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[Psi]", "[", 
+            RowBox[{"6", ",", " ", 
+             SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", 
+             " ", "r"}], "]"}], ")"}], "2"], "*", 
+         SuperscriptBox["r", 
+          RowBox[{"-", "2"}]]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", 
+          RowBox[{"50", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}], ",", 
+          RowBox[{"170", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"9", ",", 
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"\[Psi]", "[", 
+            RowBox[{"9", ",", " ", 
+             SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",", 
+             " ", "r"}], "]"}], ")"}], "2"], "*", 
+         SuperscriptBox["r", 
+          RowBox[{"-", "2"}]]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", 
+          RowBox[{"50", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}], ",", 
+          RowBox[{"170", "*", 
+           SuperscriptBox["10", 
+            RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}], "}"}]}], 
+   "\[IndentingNewLine]", "}"}]}]], "Input",ExpressionUUID->"ca510455-dd65-\
+457f-a763-3b984bd7aa73"],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"expectationsrsquared", ",", " ", 
+   RowBox[{"PlotMarkers", "\[Rule]", 
+    RowBox[{"{", "\"\<x\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", "Black"}], ",", " ", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\[Nu]\>\"", ",", " ", 
+      "\"\<<\!\(\*FractionBox[\(1\), SuperscriptBox[\(r\), \
+\(2\)]]\)\!\(\*SubscriptBox[\(>\), \(\[Nu]\)]\)\>\""}], "}"}]}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.5"}], ",", " ", "9.1"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"7.1", "*", 
+         SuperscriptBox["10", "19"]}], ",", " ", 
+        RowBox[{"7.9", "*", 
+         SuperscriptBox["10", "19"]}]}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Plot of the expectation value of one upon r squared against \
+\[Nu]\>\"", "]"}], "]"}]}]}], "]"}]], "Input",ExpressionUUID->"93673336-b898-\
+434e-94f2-5c736538216f"],
+
+Cell[BoxData[
+ RowBox[{"Bvalues", " ", ":=", " ", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      RowBox[{
+       FractionBox["h", 
+        RowBox[{"8", "*", 
+         SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"\[Psi]", "[", 
+             RowBox[{"0", ",", " ", 
+              SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",",
+               " ", "r"}], "]"}], ")"}], "2"], "*", 
+          SuperscriptBox["r", 
+           RowBox[{"-", "2"}]]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", 
+           RowBox[{"50", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}], ",", 
+           RowBox[{"170", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", 
+      RowBox[{
+       FractionBox["h", 
+        RowBox[{"8", "*", 
+         SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"\[Psi]", "[", 
+             RowBox[{"1", ",", " ", 
+              SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",",
+               " ", "r"}], "]"}], ")"}], "2"], "*", 
+          SuperscriptBox["r", 
+           RowBox[{"-", "2"}]]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", 
+           RowBox[{"50", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}], ",", 
+           RowBox[{"170", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", 
+      RowBox[{
+       FractionBox["h", 
+        RowBox[{"8", "*", 
+         SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"\[Psi]", "[", 
+             RowBox[{"2", ",", " ", 
+              SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",",
+               " ", "r"}], "]"}], ")"}], "2"], "*", 
+          SuperscriptBox["r", 
+           RowBox[{"-", "2"}]]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", 
+           RowBox[{"50", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}], ",", 
+           RowBox[{"170", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"3", ",", 
+      RowBox[{
+       FractionBox["h", 
+        RowBox[{"8", "*", 
+         SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"\[Psi]", "[", 
+             RowBox[{"3", ",", " ", 
+              SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",",
+               " ", "r"}], "]"}], ")"}], "2"], "*", 
+          SuperscriptBox["r", 
+           RowBox[{"-", "2"}]]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", 
+           RowBox[{"50", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}], ",", 
+           RowBox[{"170", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"6", ",", 
+      RowBox[{
+       FractionBox["h", 
+        RowBox[{"8", "*", 
+         SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"\[Psi]", "[", 
+             RowBox[{"6", ",", " ", 
+              SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",",
+               " ", "r"}], "]"}], ")"}], "2"], "*", 
+          SuperscriptBox["r", 
+           RowBox[{"-", "2"}]]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", 
+           RowBox[{"50", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}], ",", 
+           RowBox[{"170", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"9", ",", 
+      RowBox[{
+       FractionBox["h", 
+        RowBox[{"8", "*", 
+         SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"\[Psi]", "[", 
+             RowBox[{"9", ",", " ", 
+              SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",",
+               " ", "r"}], "]"}], ")"}], "2"], "*", 
+          SuperscriptBox["r", 
+           RowBox[{"-", "2"}]]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", 
+           RowBox[{"50", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}], ",", 
+           RowBox[{"170", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]}], "}"}]}], 
+   "\[IndentingNewLine]", "}"}]}]], "Input",ExpressionUUID->"484eea47-a0d6-\
+41ee-8581-f47db4f4beb3"],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"Bvalues", ",", " ", 
+   RowBox[{"PlotMarkers", "\[Rule]", 
+    RowBox[{"{", "\"\<x\>\"", "}"}]}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", "Black"}], ",", " ", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\[Nu]\>\"", ",", " ", 
+      "\"\<\!\(TraditionalForm\`\*SubscriptBox[OverscriptBox[\(B\), \(~\)], \
+\(\[Nu]\)]\)\>\""}], "}"}]}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.5"}], ",", " ", "9.1"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"1.75", ",", " ", "1.95"}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Plot of \!\(\*SubscriptBox[OverscriptBox[\(B\), \(~\)], \(\[Nu]\)]\
+\) against \[Nu]\>\"", "]"}], "]"}]}]}], "]"}]], "Input",ExpressionUUID->\
+"ea8790c6-3991-4e28-8c8f-04cbfdab22a0"],
+
+Cell[TextData[{
+ "\nEquation (3.1) implies a linear relationship such that we should be able \
+to derive values for ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    OverscriptBox["B", "~"], "e"], TraditionalForm]],
+  CellChangeTimes->{{3.688245771345683*^9, 3.6882458383319798`*^9}},
+  ExpressionUUID->"545f6a8d-5fe6-4b61-b0d1-fc9c44567854"],
+ ", \[Alpha] and ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "e"], TraditionalForm]],ExpressionUUID->
+  "dba9bf0e-4db4-4c76-a873-314ac4c32a08"],
+ " if we plot (\[Nu] + ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["1", "2"], TraditionalForm]],ExpressionUUID->
+  "277ad08c-a99f-454d-8e4e-c00d7e00b4b2"],
+ ") against ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    OverscriptBox["B", "~"], "\[Nu]"], TraditionalForm]],
+  CellChangeTimes->{{3.688245771345683*^9, 3.6882458383319798`*^9}},
+  ExpressionUUID->"e27c9cb3-3df2-4055-93cd-53d1698ca076"],
+ "."
+}], "Text",ExpressionUUID->"877d4755-b1c1-4c26-993a-a670f6b1288c"],
+
+Cell[BoxData[
+ RowBox[{"data", "=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0", "+", 
+       FractionBox["1", "2"]}], ",", 
+      RowBox[{
+       FractionBox["h", 
+        RowBox[{"8", "*", 
+         SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"\[Psi]", "[", 
+             RowBox[{"0", ",", " ", 
+              SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",",
+               " ", "r"}], "]"}], ")"}], "2"], "*", 
+          SuperscriptBox["r", 
+           RowBox[{"-", "2"}]]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", 
+           RowBox[{"50", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}], ",", 
+           RowBox[{"170", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", "+", 
+       FractionBox["1", "2"]}], ",", 
+      RowBox[{
+       FractionBox["h", 
+        RowBox[{"8", "*", 
+         SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"\[Psi]", "[", 
+             RowBox[{"1", ",", " ", 
+              SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",",
+               " ", "r"}], "]"}], ")"}], "2"], "*", 
+          SuperscriptBox["r", 
+           RowBox[{"-", "2"}]]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", 
+           RowBox[{"50", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}], ",", 
+           RowBox[{"170", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"2", "+", 
+       FractionBox["1", "2"]}], ",", 
+      RowBox[{
+       FractionBox["h", 
+        RowBox[{"8", "*", 
+         SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"\[Psi]", "[", 
+             RowBox[{"2", ",", " ", 
+              SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",",
+               " ", "r"}], "]"}], ")"}], "2"], "*", 
+          SuperscriptBox["r", 
+           RowBox[{"-", "2"}]]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", 
+           RowBox[{"50", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}], ",", 
+           RowBox[{"170", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"3", "+", 
+       FractionBox["1", "2"]}], ",", 
+      RowBox[{
+       FractionBox["h", 
+        RowBox[{"8", "*", 
+         SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"\[Psi]", "[", 
+             RowBox[{"3", ",", " ", 
+              SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",",
+               " ", "r"}], "]"}], ")"}], "2"], "*", 
+          SuperscriptBox["r", 
+           RowBox[{"-", "2"}]]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", 
+           RowBox[{"50", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}], ",", 
+           RowBox[{"170", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"6", "+", 
+       FractionBox["1", "2"]}], ",", 
+      RowBox[{
+       FractionBox["h", 
+        RowBox[{"8", "*", 
+         SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"\[Psi]", "[", 
+             RowBox[{"6", ",", " ", 
+              SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",",
+               " ", "r"}], "]"}], ")"}], "2"], "*", 
+          SuperscriptBox["r", 
+           RowBox[{"-", "2"}]]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", 
+           RowBox[{"50", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}], ",", 
+           RowBox[{"170", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"9", "+", 
+       FractionBox["1", "2"]}], ",", 
+      RowBox[{
+       FractionBox["h", 
+        RowBox[{"8", "*", 
+         SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]"}]], "*", 
+       RowBox[{"NIntegrate", "[", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"\[Psi]", "[", 
+             RowBox[{"9", ",", " ", 
+              SubscriptBox["r", "e"], ",", " ", "p", ",", " ", "\[Beta]", ",",
+               " ", "r"}], "]"}], ")"}], "2"], "*", 
+          SuperscriptBox["r", 
+           RowBox[{"-", "2"}]]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", 
+           RowBox[{"50", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}], ",", 
+           RowBox[{"170", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "12"}]]}]}], "}"}]}], "]"}]}]}], "}"}]}], 
+   "\[IndentingNewLine]", "}"}]}]], "Input",ExpressionUUID->"3edcb82f-658f-\
+4f94-b51f-02482f5d19f8"],
+
+Cell[BoxData[
+ RowBox[{"line", " ", "=", " ", 
+  RowBox[{"Fit", "[", 
+   RowBox[{"data", ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "x"}], "}"}], ",", "x"}], "]"}]}]], "Input",ExpressionU\
+UID->"f4535c0e-5f9f-4a43-acbe-a40d906c346f"],
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"ListPlot", "[", 
+    RowBox[{"data", ",", " ", 
+     RowBox[{"PlotStyle", "\[Rule]", "Red"}]}], "]"}], ",", " ", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"{", "line", "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", " ", "0", ",", " ", "10"}], "}"}]}], "]"}]}], 
+  "]"}]], "Input",ExpressionUUID->"3e012bc6-cccd-45e0-84d1-75fcbf602a7c"],
+
+Cell[TextData[{
+ "\nHence we now know that ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox[
+     OverscriptBox["B", "~"], "e"], "=", "6.07199"}], TraditionalForm]],
+  ExpressionUUID->"d27f5594-6769-4197-810a-69ddf6441a85"],
+ " and \[Alpha]=0.0534583. We can now solve for ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "e"], TraditionalForm]],ExpressionUUID->
+  "5f69d479-53d8-4efb-a3c4-d3da74d9afae"],
+ "."
+}], "Text",ExpressionUUID->"67d7ea1f-9ed9-4203-83f6-6f309a214d34"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["r", "e"], "=", 
+  SqrtBox[
+   FractionBox["h", 
+    RowBox[{"8", "*", 
+     SuperscriptBox["\[Pi]", "2"], "*", "c", "*", "\[Mu]", "*", 
+     "6.071991085425847"}]]]}]], "Input",ExpressionUUID->"a206eed3-e183-4936-\
+914a-cc5ccd6734de"],
+
+Cell[TextData[{
+ "\nThe pattern in the number of nodes in the wavefunctions is that there are \
+\[Nu]+1 nodes for each wavefunction.\n\nAs \[Nu] increases the central part \
+of the square of the wavefunction becomes smaller and the extermeties become \
+larger, similar to the harmonic oscillator. However there is an introduced \
+factor of asymmetry where the function is valued higher at higher values of \
+x.\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"<", "r", 
+    SubscriptBox[">", "\[Nu]"]}], TraditionalForm]],ExpressionUUID->
+  "13a71cab-9f51-467c-8bf5-efd935f36194"],
+ " increases with \[Nu] because as the molecule rotates at higher energies it \
+causes a stretching of the bond and so the bond length r will increase.\n\n\
+The data does fit equation (3.1) however the calculated value for ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "e"], TraditionalForm]],ExpressionUUID->
+  "d4bd141e-d86f-4724-879b-9b233b6851ac"],
+ "is not the 112.8pm that we expect."
+}], "Text",ExpressionUUID->"f16cf253-ccad-4c5b-8ae4-a422f46d1697"]
+}, Open  ]]
+}, Open  ]]
+},
+PrintingStyleEnvironment->"Working",
+WindowSize->{924, 955},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+PrintingPageRange->{Automatic, Automatic},
+TrackCellChangeTimes->False,
+Magnification:>1.25 Inherited,
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 165, 3, 277, "Title",ExpressionUUID->"5f0eb207-83ff-49ea-b315-baefa20fcf71"],
+Cell[CellGroupData[{
+Cell[770, 29, 97, 0, 84, "Section",ExpressionUUID->"c11e3cb4-2063-4985-87f9-8ba8ab4ee94b"],
+Cell[870, 31, 177, 4, 73, "Text",ExpressionUUID->"c1f3d571-4a22-4cc3-8108-0bbf7dadd0b0"],
+Cell[1050, 37, 1983, 68, 186, "Input",ExpressionUUID->"55902de8-22e8-4223-9225-4904288351d9"],
+Cell[3036, 107, 190, 4, 102, "Text",ExpressionUUID->"c48ea9fc-dadd-49ac-ba68-bc8b0bb80f79"],
+Cell[3229, 113, 407, 12, 55, "Input",ExpressionUUID->"36c6d2aa-3f96-4ead-b879-21d893dfbb40"],
+Cell[3639, 127, 380, 11, 55, "Input",ExpressionUUID->"c24e7a8b-268c-4542-b9d5-438f573140ee"],
+Cell[4022, 140, 380, 11, 55, "Input",ExpressionUUID->"412878fc-09ae-4d8c-a27e-b65b8fc1d27e"],
+Cell[4405, 153, 380, 11, 55, "Input",ExpressionUUID->"32bea87b-e70b-4c87-be94-6e6990ae77ae"],
+Cell[4788, 166, 380, 11, 55, "Input",ExpressionUUID->"b3f2b218-fce5-4d9b-aa81-7be201516fce"],
+Cell[5171, 179, 380, 11, 55, "Input",ExpressionUUID->"a0b06425-1489-4aa1-910d-7e43cf3590bb"],
+Cell[5554, 192, 152, 3, 73, "Text",ExpressionUUID->"7cbe227b-17ad-4350-a236-66cba3938163"],
+Cell[5709, 197, 2766, 100, 186, "Input",ExpressionUUID->"6c278ba4-4eca-4691-81ba-e64779468900"],
+Cell[8478, 299, 218, 4, 102, "Text",ExpressionUUID->"1db481b9-c082-4fdd-89cd-6918e98c7195"],
+Cell[8699, 305, 1609, 46, 177, "Input",ExpressionUUID->"20eff55a-c7ff-4a41-b9ea-56e33f38e1fb"],
+Cell[10311, 353, 1609, 46, 177, "Input",ExpressionUUID->"ec474555-3ca4-4239-a817-20ab8da942be"],
+Cell[11923, 401, 1609, 46, 177, "Input",ExpressionUUID->"f8e5997d-f401-414a-ac0e-63a0f9bd8f13"],
+Cell[13535, 449, 1609, 46, 177, "Input",ExpressionUUID->"398f8408-a9d6-4b9e-b75f-a605c4e031ff"],
+Cell[15147, 497, 1609, 46, 177, "Input",ExpressionUUID->"7c70443a-7010-4684-a361-d0167f4e4f8f"],
+Cell[16759, 545, 1609, 46, 177, "Input",ExpressionUUID->"d07c823c-7142-4121-8c87-82e29be8288e"],
+Cell[18371, 593, 333, 7, 102, "Text",ExpressionUUID->"34c8cab5-18fc-425d-bb94-a555e563ee26"],
+Cell[18707, 602, 425, 12, 55, "Input",ExpressionUUID->"c12d1467-df61-4a27-ab0f-7a81a41ce4f0"],
+Cell[19135, 616, 425, 12, 55, "Input",ExpressionUUID->"8d836246-bf35-43fd-8688-f391a659f6b1"],
+Cell[19563, 630, 425, 12, 55, "Input",ExpressionUUID->"ee592f53-fe86-4f2f-b987-0d41b82304cd"],
+Cell[19991, 644, 425, 12, 55, "Input",ExpressionUUID->"ba2f2b95-3a8f-425b-af95-c7df5663057b"],
+Cell[20419, 658, 425, 12, 55, "Input",ExpressionUUID->"575bcf4a-2639-4cc9-9b06-a4cfd76a963c"],
+Cell[20847, 672, 425, 12, 55, "Input",ExpressionUUID->"024e03ef-bb4a-4ef7-989f-9041b332e6d0"],
+Cell[21275, 686, 112, 3, 73, "Text",ExpressionUUID->"84e362cf-ea2e-439e-8af2-505897b050d0"],
+Cell[21390, 691, 782, 22, 37, "Input",ExpressionUUID->"3821d848-4460-4361-8daa-fb97c57b6968"],
+Cell[22175, 715, 947, 25, 98, "Input",ExpressionUUID->"0ca93a0e-e384-47c5-a0aa-7f845ec2c2df"],
+Cell[23125, 742, 143, 3, 73, "Text",ExpressionUUID->"8dabd7a3-db1a-4157-8fc0-21b94846175c"],
+Cell[23271, 747, 288, 9, 68, "Input",ExpressionUUID->"e25fe200-4fd4-481e-8162-f8bb843f27ec"],
+Cell[23562, 758, 137, 3, 37, "Input",ExpressionUUID->"3197dc02-34ea-45ba-9ab9-e543948832e6"],
+Cell[23702, 763, 137, 3, 37, "Input",ExpressionUUID->"36158588-2fe2-4d91-88c1-4173280e08d5"],
+Cell[23842, 768, 137, 3, 37, "Input",ExpressionUUID->"725d3f95-5572-4f28-86d6-ece89dcb3cd0"],
+Cell[23982, 773, 137, 3, 37, "Input",ExpressionUUID->"de3ce7bf-3e52-46ea-ba47-f975e259dda4"],
+Cell[24122, 778, 137, 3, 37, "Input",ExpressionUUID->"749d22d3-239d-46c6-a328-26668e47044d"],
+Cell[24262, 783, 137, 3, 37, "Input",ExpressionUUID->"bf2d772b-0ecf-460c-be47-d52684f98e2a"],
+Cell[24402, 788, 174, 4, 73, "Text",ExpressionUUID->"3b0ce383-16cf-46aa-b577-5c196da35014"],
+Cell[24579, 794, 404, 12, 41, "Input",ExpressionUUID->"9ba0c9c6-33d8-4d61-bdc8-71aa297e8368"],
+Cell[24986, 808, 404, 12, 41, "Input",ExpressionUUID->"e3d70ee0-aa55-4558-b5b1-ba6d8c9a0075"],
+Cell[25393, 822, 404, 12, 41, "Input",ExpressionUUID->"d18a9cd2-1a00-44b1-8f9e-0276cbe2f874"],
+Cell[25800, 836, 404, 12, 41, "Input",ExpressionUUID->"eb4cbbdd-e13c-4cbb-937d-3c41c3c8e71a"],
+Cell[26207, 850, 404, 12, 41, "Input",ExpressionUUID->"9c66fee7-c485-4844-9abe-1860e644b17f"],
+Cell[26614, 864, 404, 12, 41, "Input",ExpressionUUID->"88295165-f0ee-492d-8a10-e3800fe5f956"],
+Cell[27021, 878, 102, 3, 73, "Text",ExpressionUUID->"013af861-c29d-49ba-afc4-75fe833aaaa5"],
+Cell[27126, 883, 2797, 82, 186, "Input",ExpressionUUID->"98c4033f-f756-4089-a9ce-b91fc3be2641"],
+Cell[29926, 967, 924, 23, 194, "Input",ExpressionUUID->"958c3ae1-0219-4e5a-b874-fbfa292d207d"],
+Cell[30853, 992, 971, 16, 361, "Text",ExpressionUUID->"01950934-5b1d-47e7-a3ed-3d52e65b0827"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31861, 1013, 93, 0, 84, "Section",ExpressionUUID->"2fa171a6-e3f6-407e-9495-c1cbd6283eb0"],
+Cell[31957, 1015, 226, 4, 102, "Text",ExpressionUUID->"9a290dbd-0c77-45a2-9f33-dc708b93612d"],
+Cell[32186, 1021, 352, 11, 38, "Input",ExpressionUUID->"eee712ad-07fc-4c22-a49b-e48f7884b494"],
+Cell[32541, 1034, 232, 6, 38, "Input",ExpressionUUID->"da4c3e03-e322-40f4-a486-dfff74a6dc09"],
+Cell[32776, 1042, 1530, 43, 246, "Input",ExpressionUUID->"865feeb3-bcc5-4731-b11f-191d180e8e5b"],
+Cell[34309, 1087, 301, 5, 131, "Text",ExpressionUUID->"4eaf8edd-b0cd-438a-bd05-b01fd14e35d5"],
+Cell[34613, 1094, 1534, 43, 246, "Input",ExpressionUUID->"80de4dbe-5ed8-42cc-aa03-96da79b20666"],
+Cell[36150, 1139, 335, 8, 102, "Text",ExpressionUUID->"c67729de-b171-4980-a42f-17364c3344e8"],
+Cell[36488, 1149, 2234, 66, 226, "Input",ExpressionUUID->"2ad957ba-1d51-4fc0-aa13-98ba80e4faa6"],
+Cell[38725, 1217, 288, 7, 73, "Text",ExpressionUUID->"ea1ba81c-4b87-4dd3-97d1-80e4a9dc2cd1"],
+Cell[39016, 1226, 2343, 67, 226, "Input",ExpressionUUID->"1a349f76-b885-446e-83ef-ef9d3aded675"],
+Cell[41362, 1295, 374, 7, 131, "Text",ExpressionUUID->"5c44f59b-0c7b-4ea3-92c2-fd015a7d0738"],
+Cell[41739, 1304, 1204, 38, 268, "Input",ExpressionUUID->"b0d563a3-e949-4f31-bb79-22c93cdb63f7"],
+Cell[42946, 1344, 293, 8, 84, "Input",ExpressionUUID->"177e3ae1-e5c6-463a-9ddc-2a8a9d09b955"],
+Cell[43242, 1354, 231, 7, 56, "Input",ExpressionUUID->"0cb9a037-0fd5-46e8-8a0a-e8851a104d8e"],
+Cell[43476, 1363, 187, 4, 102, "Text",ExpressionUUID->"c96fe037-9003-4691-bf2d-aaf97f52782c"],
+Cell[43666, 1369, 1719, 55, 201, "Input",ExpressionUUID->"35445aaf-151e-473d-8eea-faea2cd2fa92"],
+Cell[45388, 1426, 1660, 48, 177, "Input",ExpressionUUID->"3993f3c4-072b-4a90-b727-095b8738e404"],
+Cell[47051, 1476, 1660, 48, 177, "Input",ExpressionUUID->"3f6e1e0b-baa9-4f0d-b028-3ffeda397877"],
+Cell[48714, 1526, 1660, 48, 177, "Input",ExpressionUUID->"15be8593-8c60-46b3-b7ca-3467ecf3ed93"],
+Cell[50377, 1576, 1660, 48, 177, "Input",ExpressionUUID->"8840c6ea-7dc9-4e82-aebc-484ac7217a9b"],
+Cell[52040, 1626, 1660, 48, 177, "Input",ExpressionUUID->"3008af96-4b7e-4895-9a64-73ea712ad471"],
+Cell[53703, 1676, 1660, 48, 177, "Input",ExpressionUUID->"38d436a1-122d-42c1-b2f4-ab6b3f186b37"],
+Cell[55366, 1726, 136, 3, 73, "Text",ExpressionUUID->"0b46eb8f-d96e-4861-9d88-06f722dd3406"],
+Cell[55505, 1731, 1742, 51, 177, "Input",ExpressionUUID->"9937ccb4-6ee9-4ed9-b9f8-d88973b5a3e1"],
+Cell[57250, 1784, 1742, 51, 177, "Input",ExpressionUUID->"a9d18181-6877-4072-a2f8-3af5433999d6"],
+Cell[58995, 1837, 1742, 51, 177, "Input",ExpressionUUID->"d656673c-eee8-4b64-9111-20d59958a9d2"],
+Cell[60740, 1890, 1742, 51, 177, "Input",ExpressionUUID->"26cf1f32-d757-4a41-8eda-90356039af12"],
+Cell[62485, 1943, 1742, 51, 177, "Input",ExpressionUUID->"0e5f017c-03b9-46c6-813a-6689c5987c90"],
+Cell[64230, 1996, 1742, 51, 177, "Input",ExpressionUUID->"a292f52c-487c-495c-a626-113190ab234d"],
+Cell[65975, 2049, 179, 4, 73, "Text",ExpressionUUID->"40d472c0-5152-4e34-83fc-a7f8b2bbebc2"],
+Cell[66157, 2055, 597, 18, 41, "Input",ExpressionUUID->"d7ee5ed2-6ccf-4543-873c-3fe03b688a39"],
+Cell[66757, 2075, 597, 18, 41, "Input",ExpressionUUID->"3da81b11-1e55-4ab9-a956-4329ff88c58c"],
+Cell[67357, 2095, 597, 18, 41, "Input",ExpressionUUID->"1f13d19c-463c-4c74-be23-a5e9780996fd"],
+Cell[67957, 2115, 597, 18, 41, "Input",ExpressionUUID->"bbdca13e-0ad6-4706-b35d-410389382df9"],
+Cell[68557, 2135, 597, 18, 41, "Input",ExpressionUUID->"d16ab150-c7bf-463e-89b2-ab64254485a3"],
+Cell[69157, 2155, 597, 18, 41, "Input",ExpressionUUID->"bbf9b6b2-5590-48e5-95d2-532cc2a2903a"],
+Cell[69757, 2175, 126, 3, 73, "Text",ExpressionUUID->"c71ff785-6b05-4f6a-8a92-46088ed9f419"],
+Cell[69886, 2180, 4299, 124, 243, "Input",ExpressionUUID->"404910ed-d931-4a0c-b065-a5070f35ad15"],
+Cell[74188, 2306, 1104, 31, 124, "Input",ExpressionUUID->"c65d8e13-2830-4bc6-8b86-154d876f0c72"],
+Cell[75295, 2339, 207, 3, 73, "Text",ExpressionUUID->"002549e9-9663-449d-a137-a38a689c67f2"],
+Cell[75505, 2344, 644, 20, 41, "Input",ExpressionUUID->"9fbec3bb-34b7-4e17-b307-ba2f5f2a7f0e"],
+Cell[76152, 2366, 644, 20, 41, "Input",ExpressionUUID->"def1c85d-ac1a-48f7-a853-db44e1cd05bc"],
+Cell[76799, 2388, 644, 20, 41, "Input",ExpressionUUID->"1aaee18c-f0e4-4d34-8a65-6fed8555df67"],
+Cell[77446, 2410, 644, 20, 41, "Input",ExpressionUUID->"8f526127-ef16-428e-b237-2979229a35ff"],
+Cell[78093, 2432, 644, 20, 41, "Input",ExpressionUUID->"a7c5ca7e-efab-475e-90ea-9881c0bd3a93"],
+Cell[78740, 2454, 644, 20, 41, "Input",ExpressionUUID->"3be6b474-b38b-443e-9822-5c5d7212ddbe"],
+Cell[79387, 2476, 303, 8, 73, "Text",ExpressionUUID->"164a6332-52c6-4157-946a-82bc61a1bedc"],
+Cell[79693, 2486, 784, 24, 63, "Input",ExpressionUUID->"5cf783cd-bc00-480f-850a-d9727d5e370d"],
+Cell[80480, 2512, 784, 24, 63, "Input",ExpressionUUID->"598413ef-4435-4546-b8b8-2fffc48f6748"],
+Cell[81267, 2538, 784, 24, 63, "Input",ExpressionUUID->"20a7b42e-9892-4d14-bcb9-b0a38e47cb40"],
+Cell[82054, 2564, 784, 24, 63, "Input",ExpressionUUID->"4f70ad26-83ad-441f-85c3-4818adb05950"],
+Cell[82841, 2590, 784, 24, 63, "Input",ExpressionUUID->"ed0b3c3c-63a4-4f3e-b8fd-37b966f9530c"],
+Cell[83628, 2616, 784, 24, 63, "Input",ExpressionUUID->"7403876e-7496-4dfd-a2a5-6720bb4e9a3b"],
+Cell[84415, 2642, 111, 3, 73, "Text",ExpressionUUID->"b927ebe1-3034-48f8-81bf-ba4c687b9c4e"],
+Cell[84529, 2647, 4649, 136, 243, "Input",ExpressionUUID->"ca510455-dd65-457f-a763-3b984bd7aa73"],
+Cell[89181, 2785, 1128, 30, 183, "Input",ExpressionUUID->"93673336-b898-434e-94f2-5c736538216f"],
+Cell[90312, 2817, 5596, 160, 621, "Input",ExpressionUUID->"484eea47-a0d6-41ee-8581-f47db4f4beb3"],
+Cell[95911, 2979, 992, 26, 116, "Input",ExpressionUUID->"ea8790c6-3991-4e28-8c8f-04cbfdab22a0"],
+Cell[96906, 3007, 966, 27, 106, "Text",ExpressionUUID->"877d4755-b1c1-4c26-993a-a670f6b1288c"],
+Cell[97875, 3036, 5900, 172, 621, "Input",ExpressionUUID->"3edcb82f-658f-4f94-b51f-02482f5d19f8"],
+Cell[103778, 3210, 242, 6, 37, "Input",ExpressionUUID->"f4535c0e-5f9f-4a43-acbe-a40d906c346f"],
+Cell[104023, 3218, 419, 11, 37, "Input",ExpressionUUID->"3e012bc6-cccd-45e0-84d1-75fcbf602a7c"],
+Cell[104445, 3231, 487, 14, 73, "Text",ExpressionUUID->"67d7ea1f-9ed9-4203-83f6-6f309a214d34"],
+Cell[104935, 3247, 274, 8, 83, "Input",ExpressionUUID->"a206eed3-e183-4936-914a-cc5ccd6734de"],
+Cell[105212, 3257, 1038, 20, 361, "Text",ExpressionUUID->"f16cf253-ccad-4c5b-8ae4-a422f46d1697"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

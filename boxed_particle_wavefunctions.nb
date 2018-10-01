@@ -1,0 +1,255 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8376,        247]
+NotebookOptionsPosition[      6914,        210]
+NotebookOutlinePosition[      7407,        230]
+CellTagsIndexPosition[      7364,        227]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Exploring the wavefunctions of a particle in a box.", "Title",ExpressionUUID->"1d11d131-a513-4efe-8e88-6fe81db4ceca"],
+
+Cell[CellGroupData[{
+
+Cell["Determining an expression for the normalization constant.", "Section",ExpressionUUID->"d95d3b91-f2a3-4da7-96d3-6fac6ea2f5db"],
+
+Cell[BoxData[
+ RowBox[{"Refine", "[", 
+  RowBox[{
+   SqrtBox[
+    FractionBox["1", 
+     RowBox[{
+      SubsuperscriptBox["\[Integral]", "0", "a"], 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"Sin", "[", 
+         RowBox[{"n", "*", "\[Pi]", "*", 
+          RowBox[{"x", "/", "a"}]}], "]"}], "2"], 
+       RowBox[{"\[DifferentialD]", "x"}]}]}]]], ",", " ", 
+   RowBox[{"n", "\[Element]", "Integers"}]}], "]"}]], "Input",ExpressionUUID->\
+"ba12cd69-4c48-42d6-9a91-bbbfa151243d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Plotting graphs of the normalized forms of the wavefunctions.\
+\>", "Section",ExpressionUUID->"5f9f2e29-3273-4afe-ac1b-ec50894a71cd"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      SqrtBox["2"], "*", 
+      RowBox[{"Sin", "[", 
+       FractionBox[
+        RowBox[{"1", "*", "\[Pi]", "*", "x"}], "1"], "]"}]}], ",", " ", 
+     RowBox[{
+      SqrtBox["2"], "*", 
+      RowBox[{"Sin", "[", 
+       FractionBox[
+        RowBox[{"2", "*", "\[Pi]", "*", "x"}], "1"], "]"}]}], ",", " ", 
+     RowBox[{
+      SqrtBox["2"], "*", 
+      RowBox[{"Sin", "[", 
+       FractionBox[
+        RowBox[{"3", "*", "\[Pi]", "*", "x"}], "1"], "]"}]}], ",", " ", 
+     RowBox[{
+      SqrtBox["2"], "*", 
+      RowBox[{"Sin", "[", 
+       FractionBox[
+        RowBox[{"4", "*", "\[Pi]", "*", "x"}], "1"], "]"}]}]}], "}"}], ",", 
+   " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "2", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "3", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "4", "]"}]}], "}"}]}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\!\(\*SubscriptBox[\(\[Psi]\), \(1\)]\)(x)\>\"", ",", " ", 
+      "\"\<\!\(\*SubscriptBox[\(\[Psi]\), \(2\)]\)(x)\>\"", ",", " ", 
+      "\"\<\!\(\*SubscriptBox[\(\[Psi]\), \(3\)]\)(x)\>\"", ",", " ", 
+      "\"\<\!\(\*SubscriptBox[\(\[Psi]\), \(4\)]\)(x)\>\""}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Normalized forms of \!\(\*SubscriptBox[\(\[Psi]\), \(n\)]\)(x) \
+from x=0 to x=1 for n=1 to n=4.\>\"", "]"}], "]"}]}]}], "]"}]], "Input",Expres\
+sionUUID->"b1e91039-ae53-4be3-93c9-b2079d5611fa"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Verifying the normalized wavefunctions are orthogonal.", "Section",ExpressionUUID->"98ebd7a0-9dad-4649-80b6-758b4fe54924"],
+
+Cell[BoxData[
+ RowBox[{
+  SubsuperscriptBox["\[Integral]", "0", "1"], 
+  RowBox[{
+   SqrtBox["2"], "*", 
+   RowBox[{"Sin", "[", 
+    FractionBox[
+     RowBox[{"1", "*", "\[Pi]", "*", "x"}], "1"], "]"}], "*", 
+   SqrtBox["2"], "*", 
+   RowBox[{"Sin", "[", 
+    FractionBox[
+     RowBox[{"2", "*", "\[Pi]", "*", "x"}], "1"], "]"}], 
+   RowBox[{"\[DifferentialD]", "x"}]}]}]], "Input",ExpressionUUID->"8c3a6643-\
+a394-4732-a66d-e33f65edeeff"],
+
+Cell[BoxData[
+ RowBox[{
+  SubsuperscriptBox["\[Integral]", "0", "1"], 
+  RowBox[{
+   SqrtBox["2"], "*", 
+   RowBox[{"Sin", "[", 
+    FractionBox[
+     RowBox[{"1", "*", "\[Pi]", "*", "x"}], "1"], "]"}], "*", 
+   SqrtBox["2"], "*", 
+   RowBox[{"Sin", "[", 
+    FractionBox[
+     RowBox[{"3", "*", "\[Pi]", "*", "x"}], "1"], "]"}], 
+   RowBox[{"\[DifferentialD]", "x"}]}]}]], "Input",ExpressionUUID->"b311bf2a-\
+fc7c-43b4-88bc-7e7294f7505e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Plotting the products of normalized wavefunctions.", "Section",ExpressionUUID->"56c8804a-d37b-4569-a8d4-e93cd01f5016"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      SqrtBox["2"], "*", 
+      RowBox[{"Sin", "[", 
+       FractionBox[
+        RowBox[{"1", "*", "\[Pi]", "*", "x"}], "1"], "]"}], "*", 
+      SqrtBox["2"], "*", 
+      RowBox[{"Sin", "[", 
+       FractionBox[
+        RowBox[{"2", "*", "\[Pi]", "*", "x"}], "1"], "]"}]}], ",", " ", 
+     RowBox[{
+      SqrtBox["2"], "*", 
+      RowBox[{"Sin", "[", 
+       FractionBox[
+        RowBox[{"1", "*", "\[Pi]", "*", "x"}], "1"], "]"}], "*", 
+      SqrtBox["2"], "*", 
+      RowBox[{"Sin", "[", 
+       FractionBox[
+        RowBox[{"3", "*", "\[Pi]", "*", "x"}], "1"], "]"}]}]}], "}"}], ",", 
+   " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+        RowBox[{"AbsoluteDashing", "[", "2", "]"}]}], "}"}]}], "}"}]}], ",", 
+   " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\!\(\*SubscriptBox[\(\[Psi]\), \(1\)]\)(x)\!\(\*SubscriptBox[\(\
+\[Psi]\), \(2\)]\)(x)\>\"", ",", " ", 
+      "\"\<\!\(\*SubscriptBox[\(\[Psi]\), \(1\)]\)(x)\!\(\*SubscriptBox[\(\
+\[Psi]\), \(3\)]\)(x)\>\""}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "Framed", "[", 
+      "\"\<Normalized wavefunction products in the interval x=0 to x=1.\>\"", 
+      "]"}], "]"}]}]}], "]"}]], "Input",ExpressionUUID->"91d2bb96-ad2d-4e56-\
+b7ed-e8ef4bfff078"]
+}, Open  ]]
+}, Open  ]]
+},
+PrintingStyleEnvironment->"Working",
+WindowSize->{1289, 739},
+WindowMargins->{{4, Automatic}, {Automatic, 77}},
+PrintingPageRange->{Automatic, Automatic},
+TrackCellChangeTimes->False,
+Magnification:>1.5 Inherited,
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 123, 0, 238, "Title",ExpressionUUID->"1d11d131-a513-4efe-8e88-6fe81db4ceca"],
+Cell[CellGroupData[{
+Cell[728, 26, 131, 0, 101, "Section",ExpressionUUID->"d95d3b91-f2a3-4da7-96d3-6fac6ea2f5db"],
+Cell[862, 28, 487, 14, 101, "Input",ExpressionUUID->"ba12cd69-4c48-42d6-9a91-bbbfa151243d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1386, 47, 143, 2, 101, "Section",ExpressionUUID->"5f9f2e29-3273-4afe-ac1b-ec50894a71cd"],
+Cell[1532, 51, 2327, 62, 298, "Input",ExpressionUUID->"b1e91039-ae53-4be3-93c9-b2079d5611fa"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3896, 118, 128, 0, 101, "Section",ExpressionUUID->"98ebd7a0-9dad-4649-80b6-758b4fe54924"],
+Cell[4027, 120, 439, 13, 70, "Input",ExpressionUUID->"8c3a6643-a394-4732-a66d-e33f65edeeff"],
+Cell[4469, 135, 439, 13, 70, "Input",ExpressionUUID->"b311bf2a-fc7c-43b4-88bc-7e7294f7505e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4945, 153, 124, 0, 101, "Section",ExpressionUUID->"56c8804a-d37b-4569-a8d4-e93cd01f5016"],
+Cell[5072, 155, 1814, 51, 236, "Input",ExpressionUUID->"91d2bb96-ad2d-4e56-b7ed-e8ef4bfff078"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

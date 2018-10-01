@@ -1,0 +1,165 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4972,        157]
+NotebookOptionsPosition[      4139,        136]
+NotebookOutlinePosition[      4553,        154]
+CellTagsIndexPosition[      4510,        151]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   OverscriptBox["\[Epsilon]", "~"], "[", "\[Nu]_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"\[Nu]", "+", 
+      FractionBox["1", "2"]}], ")"}], " ", 
+    SubscriptBox[
+     OverscriptBox["\[Omega]", "~"], "e"]}], "-", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Nu]", "+", 
+       FractionBox["1", "2"]}], ")"}], "2"], " ", 
+    SubscriptBox[
+     OverscriptBox["\[Omega]", "~"], "e"], 
+    SubscriptBox["x", "e"], " "}]}]}]], "Input",ExpressionUUID->"d01c2207-\
+8c4d-4971-a734-701f6c5b9ae8"],
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   SubscriptBox["\[PartialD]", "\[Nu]"], 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      OverscriptBox["\[Epsilon]", "~"], "[", "\[Nu]", "]"}], "\[Equal]", 
+     "0"}], ")"}]}], "]"}]], "Input",ExpressionUUID->"3bbbe839-fae5-456a-9bf8-\
+1ac38f504e8f"],
+
+Cell[BoxData[
+ RowBox[{"Simplify", "[", 
+  RowBox[{
+   OverscriptBox["\[Epsilon]", "~"], "[", 
+   FractionBox[
+    RowBox[{"1", "-", 
+     SubscriptBox["x", "e"]}], 
+    RowBox[{"2", " ", 
+     SubscriptBox["x", "e"]}]], "]"}], "]"}]], "Input",ExpressionUUID->\
+"ae3b0147-32ef-47fb-b024-bd04e1619439"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", "-", 
+       RowBox[{"2", "y"}]}], "\[Equal]", "213.09"}], "&&", 
+     RowBox[{
+      RowBox[{"x", "-", 
+       RowBox[{"4", "y"}]}], "\[Equal]", "210.72"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y"}], "}"}]}], "]"}]}]], "Input",ExpressionUUID->\
+"70e6334e-47fd-4055-8ffe-0b24139c345d"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    SubscriptBox["V", "M"], "[", "r_", "]"}], " ", ":=", " ", 
+   RowBox[{"4327", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       RowBox[{"Exp", "[", 
+        RowBox[{
+         RowBox[{"-", "1.89"}], "*", 
+         RowBox[{
+          SuperscriptBox["10", "10"], "/", 
+          RowBox[{"(", 
+           RowBox[{"2", "*", "\[Pi]", "*", "3", "*", 
+            SuperscriptBox["10", "10"]}], ")"}]}], "*", 
+         RowBox[{"(", 
+          RowBox[{"r", "-", 
+           RowBox[{"2.97", "*", 
+            SuperscriptBox["10", 
+             RowBox[{"-", "10"}]]}]}], ")"}]}], "]"}]}], ")"}], 
+     "2"]}]}]}]], "Input",ExpressionUUID->"778ee5c2-1a85-43b3-a02c-\
+a7f38c04f827"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["V", "M"], "[", "x", "]"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "10"}], ",", "50"}], "}"}], ",", "  ", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "10"}], ",", "50"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "5000"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", " ", 
+       RowBox[{"AbsoluteDashing", "[", "1", "]"}]}], "}"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", "\"\<\!\(\*SubscriptBox[\(V\), \(M\)]\)(x)\>\"", "}"}]}], 
+   ",", " ", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"Style", "[", 
+     RowBox[{"Framed", "[", "\"\<Plot of the Morse potential.\>\"", "]"}], 
+     "]"}]}]}], "]"}]], "Input",ExpressionUUID->"5f7b092f-2c33-433d-af70-\
+56330b2f2ce2"]
+},
+WindowSize->{1127, 1059},
+WindowMargins->{{53, Automatic}, {Automatic, 9}},
+TrackCellChangeTimes->False,
+Magnification:>1.5 Inherited,
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 581, 19, 68, "Input",ExpressionUUID->"d01c2207-8c4d-4971-a734-701f6c5b9ae8"],
+Cell[1142, 41, 303, 9, 49, "Input",ExpressionUUID->"3bbbe839-fae5-456a-9bf8-1ac38f504e8f"],
+Cell[1448, 52, 301, 9, 73, "Input",ExpressionUUID->"ae3b0147-32ef-47fb-b024-bd04e1619439"],
+Cell[1752, 63, 451, 13, 109, "Input",ExpressionUUID->"70e6334e-47fd-4055-8ffe-0b24139c345d"],
+Cell[2206, 78, 836, 24, 175, "Input",ExpressionUUID->"778ee5c2-1a85-43b3-a02c-a7f38c04f827"],
+Cell[3045, 104, 1090, 30, 109, "Input",ExpressionUUID->"5f7b092f-2c33-433d-af70-56330b2f2ce2"]
+}
+]
+*)
+
